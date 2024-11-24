@@ -1,6 +1,7 @@
 <template>
   <div class="custom-input">
     <label v-if="label" class="custom-input__label">{{ label }}</label>
+    <span v-if="prefix" class="custom-input__prefix">{{ prefix }}</span>
     <Field
       :id="name"
       :name="name"
@@ -40,6 +41,10 @@ const props = defineProps({
     type: String,
     default: 'text',
   },
+  prefix: {
+    type: String,
+    default: '',
+  },
   type: {
     type: String,
     default: 'text',
@@ -66,6 +71,12 @@ const updateValue = (value) => {
     font-family: Inter-Medium, sans-serif;
     margin-bottom: 8px;
     color: #626262;
+  }
+
+  &__prefix {
+    position: absolute;
+    left: 16px;
+    top: 50px;
   }
 
   &__error {

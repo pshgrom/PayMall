@@ -5,7 +5,7 @@
         <h1>Пополнение Steam</h1>
         <label class="payment__label">Методы оплаты </label>
         <PaymentMethods />
-        <Form class="payment-inputs" as="v-form" ref="form">
+        <Form class="payment-inputs" as="v-form" ref="form" @submit.prevent>
           <CustomInput
             v-model="steamName"
             label="Steam Аккаунт"
@@ -13,7 +13,6 @@
             :name="'steamName'"
             :rules="[rules.required]"
             placeholder="SteamNickName"
-            :required="true"
           />
           <CustomInput
             v-model="sum"
@@ -22,9 +21,10 @@
             label="Сумма Пополнения"
             :rules="[rules.required, numericWithNoLeadingZero]"
             placeholder="500"
-            :required="true"
+            prefix="₽"
+            @input="filterInput"
           />
-          <div class="payment__sum">Сумма к оплате 575₽</div>
+          <div class="payment__sum">Сумма к оплате {{ calculateSum }} ₽</div>
           <CustomButton variant="primary" size="large" type="submit" @click="onSubmit">
             Перейти к оплате
           </CustomButton>
@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import CustomInput from '@/components/CustomInput.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import CustomButton from '@/components/CustomButton.vue'
 import PaymentMethods from '@/components/PaymentMethods.vue'
 import { Form } from 'vee-validate'
@@ -65,6 +65,14 @@ const setRules = (errorMsg = '') => {
   }
 }
 
+const filterInput = (event) => {
+  event.target.value = event.target.value.replace(/[^0-9]/g, '')
+
+  if (event.target.value.startsWith('0')) {
+    event.target.value = event.target.value.replace(/^0+/, '') // Удаляет все ведущие нули
+  }
+}
+
 const rules = setRules('Заполните это поле')
 
 const numericWithNoLeadingZero = (value: string) => {
@@ -77,15 +85,23 @@ const numericWithNoLeadingZero = (value: string) => {
   return true
 }
 
+const calculateSum = computed(() => {
+  if (Number.isInteger(+sum.value)) {
+    const res = +sum.value * 1.17
+    return res.toFixed(1)
+  }
+  return 0
+})
+
 const onSubmit = async () => {
+  console.log(123)
+
   const { valid } = await form.value.validate()
   if (!valid) return
-
   const data = {
     name: steamName.value,
     sum: sum.value,
   }
-
   const res = await PayApi.pay(data)
   console.warn(res)
 }
