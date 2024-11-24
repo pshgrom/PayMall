@@ -88,7 +88,7 @@ const numericWithNoLeadingZero = (value: string) => {
 const calculateSum = computed(() => {
   if (Number.isInteger(+sum.value)) {
     const res = +sum.value * 1.17
-    return res.toFixed(1)
+    return res.toFixed()
   }
   return 0
 })
