@@ -40,6 +40,7 @@
             <img src="/images/master.png" alt="Mir" />
           </div>
         </div>
+        <Information />
       </div>
     </div>
   </section>
@@ -52,6 +53,7 @@ import CustomButton from '@/components/CustomButton.vue'
 import PaymentMethods from '@/components/PaymentMethods.vue'
 import { Form } from 'vee-validate'
 import PayApi from '@/api/PayApi'
+import Information from '@/components/Information.vue'
 
 const steamName = ref('')
 const sum = ref('')

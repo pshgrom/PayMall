@@ -16,6 +16,7 @@ import Payment from '@/components/Payment.vue'
   display: flex;
   width: 100%;
   height: 100vh;
+  position: relative;
 
   &__image {
     width: 50%;
