@@ -67,11 +67,10 @@ const setRules = (errorMsg = '') => {
   }
 }
 
-const filterInput = (event) => {
-  event.target.value = event.target.value.replace(/[^0-9]/g, '')
-
-  if (event.target.value.startsWith('0')) {
-    event.target.value = event.target.value.replace(/^0+/, '') // Удаляет все ведущие нули
+const filterInput = (e) => {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '')
+  if (e.target.value.startsWith('0')) {
+    e.target.value = e.target.value.replace(/^0+/, '') // Удаляет все ведущие нули
   }
 }
 
