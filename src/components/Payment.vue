@@ -69,9 +69,8 @@ const setRules = (errorMsg = '') => {
 
 const filterInput = (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '')
-
   if (e.target.value.startsWith('0')) {
-    e.target.value = e.target.value.replace(/^0+/, '') // Удаляет все ведущие нули
+    e.target.value = e.target.value.replace(/^0+/, '')
   }
 }
 
