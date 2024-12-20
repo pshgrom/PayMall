@@ -3,7 +3,7 @@
     <div class="payment-methods__img">
       <img src="/images/spb.png" alt="Spb" />
     </div>
-    <div class="payment-methods__text">СПБ</div>
+    <div class="payment-methods__text">СБП</div>
   </div>
 </template>
 
