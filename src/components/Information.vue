@@ -1,8 +1,14 @@
 <template>
   <div class="information">
     <div class="information__title" @click="showModal = true">Контакты</div>
+    <div class="information__title" @click="showModalPrivacy = true">
+      Пользовательское соглашение
+    </div>
     <transition name="bounce" mode="out-in">
       <ModalInfo :isVisible="showModal" @close="showModal = false" />
+    </transition>
+    <transition name="bounce" mode="out-in">
+      <ModalPrivacy :isVisible="showModalPrivacy" @close="showModalPrivacy = false" />
     </transition>
   </div>
 </template>
@@ -10,8 +16,10 @@
 <script setup lang="ts">
 import ModalInfo from '@/components/ModalInfo.vue'
 import { ref } from 'vue'
+import ModalPrivacy from '@/components/ModalPrivacy.vue'
 
 const showModal = ref(false)
+const showModalPrivacy = ref(false)
 </script>
 
 <style scoped lang="scss">

@@ -2,7 +2,7 @@
   <div v-if="isVisible" class="modal-overlay" @click="closeOnOverlayClick">
     <div class="modal-content" @click.stop>
       <button class="modal-close" @click="closeModal">X</button>
-      <div class="modal-content__title">Контакты</div>
+      <h1 class="modal-content__title">Контакты</h1>
       <div class="modal-content-item">
         <div class="modal-content-item__subtitle">Email:</div>
         <div class="modal-content-item__value">
@@ -77,6 +77,7 @@ const closeOnOverlayClick = () => {
     text-align: center;
     font-size: 24px;
     font-family: Inter-Bold, sans-serif;
+    margin-bottom: 20px;
   }
 
   &-item {
