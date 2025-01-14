@@ -1,11 +1,17 @@
 <template>
   <div class="information">
     <div class="information__title" @click="showModal = true">Контакты</div>
-    <div class="information__title" @click="showModalPrivacy = true">
+    <div class="information__title" @click="showModalUserAgreement = true">
       Пользовательское соглашение
+    </div>
+    <div class="information__title" @click="showModalPrivacy = true">
+      Политика Конфиденциальности
     </div>
     <transition name="bounce" mode="out-in">
       <ModalInfo :isVisible="showModal" @close="showModal = false" />
+    </transition>
+    <transition name="bounce" mode="out-in">
+      <ModalPrivacy :isVisible="showModalUserAgreement" @close="showModalUserAgreement = false" />
     </transition>
     <transition name="bounce" mode="out-in">
       <ModalPrivacy :isVisible="showModalPrivacy" @close="showModalPrivacy = false" />
@@ -16,9 +22,10 @@
 <script setup lang="ts">
 import ModalInfo from '@/components/ModalInfo.vue'
 import { ref } from 'vue'
-import ModalPrivacy from '@/components/ModalPrivacy.vue'
+import ModalPrivacy from '@/components/ModalUserAgreement.vue'
 
 const showModal = ref(false)
+const showModalUserAgreement = ref(false)
 const showModalPrivacy = ref(false)
 </script>
 
@@ -34,6 +41,10 @@ const showModalPrivacy = ref(false)
 
     &:hover {
       color: #fff;
+    }
+
+    & + .information__title {
+      margin-top: 10px;
     }
   }
 }
